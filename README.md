@@ -28,7 +28,5 @@ Meu primeiro app feito em Flutter<br>
 - Utilização animações simples.
 
 <hr>
-<div style="height: 200px">
-    ![App-Tasks](/assets/gifs/app.gif)
-</div>
-# tasks
+![App-Tasks](/assets/gifs/app.gif)
+
