@@ -1,6 +1,6 @@
 # Tasks
 
-Meu primeiro app feito em Flutter
+Meu primeiro app feito em Flutter<br>
 <img align="center" alt="Dart" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" />
 <img align="center" alt="Flutter" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" />
 
@@ -28,6 +28,7 @@ Meu primeiro app feito em Flutter
 - Utilização animações simples.
 
 <hr>
-
-![App-Tasks](/assets/gifs/app.gif)
+<div style="height: 200px">
+    ![App-Tasks](/assets/gifs/app.gif)
+</div>
 # tasks
