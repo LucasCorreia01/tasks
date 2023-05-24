@@ -1,8 +1,6 @@
 # Tasks
 
-Meu primeiro app feito em Flutter<br>
-<img align="center" alt="Dart" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" />
-<img align="center" alt="Flutter" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" />
+Meu primeiro app feito em Flutter
 
 ## Objetivos
 
