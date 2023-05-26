@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:tasks/components/difficulty.dart';
 
@@ -10,6 +12,7 @@ class Task extends StatefulWidget {
       required this.imagem,
       required this.dificuldade,
       super.key});
+  
 
   @override
   State<Task> createState() => _TaskState();
@@ -17,8 +20,21 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   int nivel = 0;
+
+  static const List<Color> listColors = [
+      Colors.blue,
+      Colors.yellow,
+      Colors.green,
+      Colors.red,
+      Colors.black
+  ];
+  
+  int nivelExp = 0;
+
+
   @override
   Widget build(BuildContext context) {
+    double nivelMaximo = (nivel / widget.dificuldade) / 10;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Stack(
@@ -26,7 +42,9 @@ class _TaskState extends State<Task> {
           Container(
             height: 140,
             decoration: BoxDecoration(
-                color: Colors.blue, borderRadius: BorderRadius.circular(4)),
+                color:  listColors[nivelExp], 
+                borderRadius: BorderRadius.circular(4)
+              ),
           ),
           Column(
             children: [
@@ -34,7 +52,8 @@ class _TaskState extends State<Task> {
                 height: 100,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(4)),
+                    borderRadius: BorderRadius.circular(4)
+                  ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -70,7 +89,14 @@ class _TaskState extends State<Task> {
                       child: ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              nivel++;
+                              if(nivelMaximo == 1){
+                                if(nivelExp < 4){
+                                  nivelExp++;
+                                }
+                                nivel = 1;
+                              } else {
+                                nivel++;
+                              }
                             });
                           },
                           child: Column(
@@ -113,6 +139,7 @@ class _TaskState extends State<Task> {
       ),
     );
   }
+
 }
 
 
