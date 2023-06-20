@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasks/screens/formScreen.dart';
 import 'package:tasks/screens/initialScreen.dart';
 import 'package:tasks/data/inheritedWidgetTasks.dart';
 
@@ -27,7 +28,16 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const InitialScreen()
-      home: InheritedWidgetTasks(child: const InitialScreen())
+      // home: InheritedWidgetTasks(child: const InitialScreen()),
+      initialRoute: '/',
+      onGenerateRoute: (RouteSettings settings) {
+        if(settings.name == '/'){
+          return MaterialPageRoute(builder: (context) => InheritedWidgetTasks(child: const InitialScreen()));
+        } else if(settings.name == '/create-task') {
+          return MaterialPageRoute(builder: (context) => FormScreen(taskContext: settings.arguments));
+        }
+        return null;
+      },  
     );
   }
 }

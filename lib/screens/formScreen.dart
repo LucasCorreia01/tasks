@@ -4,7 +4,7 @@ import 'package:tasks/data/inheritedWidgetTasks.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({super.key, required this.taskContext});
-  final BuildContext taskContext;
+  final dynamic taskContext;
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -132,7 +132,7 @@ class _FormScreenState extends State<FormScreen> {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                   content: Text('Criando nova tarefa.')));
-                          Navigator.pop(context);
+                          Navigator.pop(widget.taskContext);
                         }
                       },
                       child: const Text(

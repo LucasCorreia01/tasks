@@ -55,6 +55,11 @@ class _InitialScreenState extends State<InitialScreen> {
               taskContext: context,
             );
           }));
+
+
+          // TODO::: Navegação nomeada
+          Navigator.of(context).pushNamed('/create-task', arguments: context);
+          // Navigator.of(context).pushNamed('/create-tasks');
         },
         child: const Icon(Icons.add),
       ),
