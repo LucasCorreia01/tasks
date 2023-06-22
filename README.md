@@ -23,14 +23,13 @@ Meu primeiro app feito em Flutter
 
 - Utilização de botões e lógicas simples de nosso aplicativo.
 
-- Utilização animações simples.
+- Utilização de animações simples.
 
 ![App Tasks](/assets/gifs/app.gif)
 
 
 ## ✔️ Técnicas e tecnologias
 
-**Veja mais de perto o que você aprenderá sobre** :
 - `TextField`: Widget de Campo de Texto.
 - `TextFormField`: Widget de Campo de Texto com Validação.
 - `Form`: Widget de Formulário que cuida da Validação de todos os TextFormFields.
@@ -55,6 +54,6 @@ Meu primeiro app feito em Flutter
 - Também foi necessário transformar o `initialWidget` em um StateFulWidget, que é atualizado toda vez que pressionamos o botão `refresh`, já que realizamos um setState(){}.
 - Criei uma função que incrementa um décimo diferente de acordo com o nível da tarefa realizada, `incrementTotalValue`. Ela é executada toda vez que pressionamos o botão UP.
 
-![App-createTask]('/assets/gifs/appcreatetask.gif)
+![App createTask](/assets/gifs/appcreatetask.gif)
 
 

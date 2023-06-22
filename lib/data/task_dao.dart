@@ -4,7 +4,7 @@ import 'package:tasks/components/taskWidget.dart';
 class TaskDao {
   static String tableSql = 'CREATE TABLE $_tableName('
       '$_name TEXT,'
-      '$_difficulty INTEGET,'
+      '$_difficulty INTEGER,'
       '$_image TEXT'
       ')';
 
