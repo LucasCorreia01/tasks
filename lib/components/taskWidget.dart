@@ -67,14 +67,18 @@ class _TaskState extends State<Task> {
                               ? Image.network(
                                   widget.urlImage,
                                   fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset('assets/images/nophoto.png'),
                                 )
                               : Image.asset(
                                   widget.urlImage,
                                   fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset('assets/images/nophoto.png'),
                                 )),
                     ),
                     SizedBox(
-                        width: 220,
+                        width: 200,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +105,8 @@ class _TaskState extends State<Task> {
                                 }
                               } else {
                                 widget.level++;
-                                InheritedWidgetTasks.of(context).incrementTotalValue(widget.difficulty);
+                                InheritedWidgetTasks.of(context)
+                                    .incrementTotalValue(widget.difficulty);
                               }
                             });
                           },

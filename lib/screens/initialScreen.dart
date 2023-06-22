@@ -17,7 +17,7 @@ class _InitialScreenState extends State<InitialScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
-        leading: Container(),
+        // leading: Container(),
         title: Column(
           children: [
             Row(
@@ -50,16 +50,9 @@ class _InitialScreenState extends State<InitialScreen> {
       body: ListView(children: InheritedWidgetTasks.of(context).tasks),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (contextNew) {
-            return FormScreen(
-              taskContext: context,
-            );
-          }));
 
-
-          // TODO::: Navegação nomeada
+          //Navegação nomeada: passo o contexto para o app conseguir salvar a tarefa
           Navigator.of(context).pushNamed('/create-task', arguments: context);
-          // Navigator.of(context).pushNamed('/create-tasks');
         },
         child: const Icon(Icons.add),
       ),

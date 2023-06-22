@@ -55,6 +55,6 @@ Meu primeiro app feito em Flutter
 - Também foi necessário transformar o `initialWidget` em um StateFulWidget, que é atualizado toda vez que pressionamos o botão `refresh`, já que realizamos um setState(){}.
 - Criei uma função que incrementa um décimo diferente de acordo com o nível da tarefa realizada, `incrementTotalValue`. Ela é executada toda vez que pressionamos o botão UP.
 
-![App-createTask]('/assets/gifs/app-createTask.gif)
+![App-createTask]('/assets/gifs/appcreatetask.gif)
 
 
