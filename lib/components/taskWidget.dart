@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasks/components/difficultyWidget.dart';
 import 'package:tasks/data/inheritedWidgetTasks.dart';
+import 'package:tasks/data/task_dao.dart';
 
 class Task extends StatefulWidget {
   final String nameTask;
@@ -10,8 +11,9 @@ class Task extends StatefulWidget {
       {required this.nameTask,
       required this.urlImage,
       required this.difficulty,
+      this.level = 0,
       super.key});
-  int level = 0;
+  int level;
   int indexColor = 0;
 
   @override
@@ -96,6 +98,9 @@ class _TaskState extends State<Task> {
                       height: 46,
                       width: 54,
                       child: ElevatedButton(
+                          onLongPress: () {
+                            _showDialog(context, widget.nameTask);
+                          },
                           onPressed: () {
                             setState(() {
                               if (levelMax == 1.0) {
@@ -149,4 +154,42 @@ class _TaskState extends State<Task> {
       ),
     );
   }
+}
+
+_showDialog(context, nameTask) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return  AlertDialog(
+        title: const Text("Cuidado!!"),
+        content: const Text("Tem certeza que deseja excluir essa tarefa?"),
+        actions: <Widget>[
+          TextButton(
+            child: const Text("Não"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          Container(
+            color: Colors.blue,
+            child: Padding(
+              padding: const EdgeInsets.all(0.3),
+              child: TextButton(
+                child:  const Text("Sim",
+                style: TextStyle(
+                  color: Colors.white,
+                  backgroundColor: Colors.blue
+                  
+                ),),
+                onPressed: () {
+                  TaskDao().delete(nameTask);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+          ),
+        ],
+      );
+    },
+  );
 }

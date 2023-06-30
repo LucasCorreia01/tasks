@@ -1,28 +1,90 @@
-
+import 'package:sqflite/sqflite.dart';
 import 'package:tasks/components/taskWidget.dart';
+import 'package:tasks/data/database.dart';
 
 class TaskDao {
   static String tableSql = 'CREATE TABLE $_tableName('
       '$_name TEXT,'
       '$_difficulty INTEGER,'
-      '$_image TEXT'
+      '$_image TEXT,'
       ')';
 
   static const String _tableName = 'TaskTable';
   static const String _name = 'name';
   static const String _difficulty = 'difficulty';
   static const String _image = 'image';
-  
-  save(Task tarefa) async{}
+  static const String _level = 'level';
 
-  //TODO:: método que recupera todos as tarefas
-  // Future<List<Task>> findAll() async{}
+  //Salva uma nova tarefa em nosso banco de dados;
+  save(Task tarefa) async {
+    // print('Estamos acessando o método save: ');
+    final Database database = await getDatabase();
+    var itemExists = await find(tarefa.nameTask);
+    Map<String, dynamic> taskMap = toMap(tarefa);
+    if (itemExists.isEmpty) {
+      // print('A tarefa não existia');
+      return await database.insert(_tableName, taskMap);
+    } else {
+      // print('A tarefa já exisite');
+      return await database.update(_tableName, taskMap,
+          where: '$_name = ?', whereArgs: [tarefa.nameTask]);
+    }
+  }
 
-  //TODO:: método que encontra uma tarefa única com base no seu nome
-  // Future<List<Task>> find(String nameOfTask) async{}
+  //método que recupera todos as tarefas;
+  Future<List<Task>> findAll() async {
+    // print('Estamos acessando o findAll: ');
+    final Database database = await getDatabase();
+    final List<Map<String, dynamic>> result = await database.query(_tableName);
+    // print('Procurando dados no banco de dados... encontrado: $result');
 
-   delete(String nameOfTask) async{}
+    return toList(result);
+  }
 
+  //método que encontra uma tarefa única com base no seu nome;
+  Future<List<Task>> find(String nameOfTask) async {
+    // print('Estamos acessando o find: ');
+    final Database database = await getDatabase();
+    final List<Map<String, dynamic>> result = await database.query(_tableName,
+        columns: [_name], where: '$_name LIKE ?', whereArgs: [nameOfTask]);
 
+    // print('Tarefa encontrada: ${toList(result)}');
+    return toList(result);
+  }
 
+  //apaga uma tarefa baseado no nome armazenado.
+  delete(String nameOfTask) async {
+    // print('Deletando tarefa: $nameOfTask');
+    final Database database = await getDatabase();
+    return database
+        .delete(_tableName, where: '$_name = ?', whereArgs: [nameOfTask]);
+  }
+
+  //Transforma nosso mapa vindo do banco em um lista de tarefas para a nossa aplicação;
+  List<Task> toList(List<Map<String, dynamic>> mapOfTasks) {
+    // print('Convertendo to List:');
+    final List<Task> tarefas = [];
+    for (Map<String, dynamic> linha in mapOfTasks) {
+      final Task tarefa = Task(
+          nameTask: linha[_name],
+          urlImage: linha[_image],
+          difficulty: linha[_difficulty]);
+      tarefas.add(tarefa);
+    }
+
+    // print(' Lista de tarefas: $tarefas');
+    return tarefas;
+  }
+
+  //Transforma nossa tarefa em um mapa para salvarmos em nosso banco de dados;
+  Map<String, dynamic> toMap(Task tarefa) {
+    // print('Convertendo tarefa em Map: ');
+    final Map<String, dynamic> mapOfTasks = Map();
+    mapOfTasks[_name] = tarefa.nameTask;
+    mapOfTasks[_difficulty] = tarefa.difficulty;
+    mapOfTasks[_image] = tarefa.urlImage;
+    // print('Mapa de tarefas: $mapOfTasks');
+
+    return mapOfTasks;
+  }
 }
