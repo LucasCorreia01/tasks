@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tasks/components/difficultyWidget.dart';
 import 'package:tasks/data/inheritedWidgetTasks.dart';
 import 'package:tasks/data/task_dao.dart';
+import 'package:tasks/data/task_dao.dart';
 
 class Task extends StatefulWidget {
   final String nameTask;
@@ -13,7 +14,7 @@ class Task extends StatefulWidget {
       required this.difficulty,
       this.level = 0,
       super.key});
-  int level;
+  int level = 0;
   int indexColor = 0;
 
   @override
@@ -114,6 +115,7 @@ class _TaskState extends State<Task> {
                                     .incrementTotalValue(widget.difficulty);
                               }
                             });
+                            TaskDao().save(widget);
                           },
                           child: Column(
                             children: const [
@@ -161,7 +163,12 @@ _showDialog(context, nameTask) {
     context: context,
     builder: (BuildContext context) {
       return  AlertDialog(
-        title: const Text("Cuidado!!"),
+        title: Row(
+          children: const [
+            Text("Deletar"),
+            Icon(Icons.delete)
+          ],
+        ),
         content: const Text("Tem certeza que deseja excluir essa tarefa?"),
         actions: <Widget>[
           TextButton(

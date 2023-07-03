@@ -134,8 +134,8 @@ class _InitialScreenState extends State<InitialScreen> {
               ),
             ),
           ).then((value) => setState(() {
-                print('Recarregando a tela inicial');
-              }));
+            print('Recarregando tela inicial');
+          }));
 
           //Navegação nomeada: passo o contexto para o app conseguir salvar a tarefa
           // Navigator.of(context)

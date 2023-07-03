@@ -49,11 +49,25 @@ Meu primeiro app feito em Flutter
 - Ter uma IDE, que pode ser o  [Android Studio](https://developer.android.com/) instalado na sua máquina
 - Ter a [SDK do Flutter](https://docs.flutter.dev/get-started/install) na versão 3.0.0
 
-## Resolução do Desafio proposto:
+## Resolução do Desafio proposto (Nível global):
 - Para resolução do desafio utilizei o `InheritedWidget` para salvar o nível global das tarefas.
 - Também foi necessário transformar o `initialWidget` em um StateFulWidget, que é atualizado toda vez que pressionamos o botão `refresh`, já que realizamos um setState(){}.
 - Criei uma função que incrementa um décimo diferente de acordo com o nível da tarefa realizada, `incrementTotalValue`. Ela é executada toda vez que pressionamos o botão UP.
 
 ![App createTask](/assets/gifs/appcreatetask.gif)
+
+## Resolução do Desafio proposto (AlerDialog)
+- A proposta do desafio é exibir uma caixa de alerta ao tentar excluir uma tarefa. 
+- Foi utilizado widget `showDialog` para mostrar a caixa de alerta.
+
+![App Delete Task](/assets/gifs/app-deleteTask.gif.gif)
+
+
+## Resolução do Desafio proposto (Persistência de dados - Nível)
+- A proposta do desafio é manter/persistir os nível de cada tarefa, mesmo após o fechamento do aplicativo.
+- Para a resolução do desafio foi criado uma nova coluna no banco de dados que guarda esse nível. 
+
+![App Delete Task](/assets/gifs/app-level.gif.gif)
+
 
 

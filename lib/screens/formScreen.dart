@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:tasks/components/taskWidget.dart';
-import 'package:tasks/data/inheritedWidgetTasks.dart';
 import 'package:tasks/data/task_dao.dart';
 
 class FormScreen extends StatefulWidget {
