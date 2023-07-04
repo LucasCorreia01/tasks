@@ -49,6 +49,10 @@ Meu primeiro app feito em Flutter
 - Ter uma IDE, que pode ser o  [Android Studio](https://developer.android.com/) instalado na sua máquina
 - Ter a [SDK do Flutter](https://docs.flutter.dev/get-started/install) na versão 3.0.0
 
+
+## 📚 Pacote sqflite
+- Como usei o pacote `sqflite` para salvar os dados. [Acesse aqui](https://luquinha.notion.site/Sqflite-ba77ae1b09db4ac2a120a20751111dbf)
+  
 ## Resolução do Desafio proposto (Nível global):
 - Para resolução do desafio utilizei o `InheritedWidget` para salvar o nível global das tarefas.
 - Também foi necessário transformar o `initialWidget` em um StateFulWidget, que é atualizado toda vez que pressionamos o botão `refresh`, já que realizamos um setState(){}.
