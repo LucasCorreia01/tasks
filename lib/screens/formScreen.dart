@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasks/components/taskWidget.dart';
 import 'package:tasks/data/task_dao.dart';
+import 'package:uuid/uuid.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({super.key, required this.taskContext});
@@ -126,6 +127,7 @@ class _FormScreenState extends State<FormScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           TaskDao().save(Task(
+                              id: const Uuid().v1(),
                               nameTask: nameController.text,
                               urlImage: imageController.text,
                               difficulty:

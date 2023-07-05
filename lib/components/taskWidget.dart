@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:tasks/components/difficultyWidget.dart';
 import 'package:tasks/data/inheritedWidgetTasks.dart';
 import 'package:tasks/data/task_dao.dart';
-import 'package:tasks/data/task_dao.dart';
+import 'package:uuid/uuid.dart';
 
 class Task extends StatefulWidget {
+  final String id;
   final String nameTask;
   final String urlImage;
   final int difficulty;
   Task(
-      {required this.nameTask,
+      {
+      required this.id,
+      required this.nameTask,
       required this.urlImage,
       required this.difficulty,
       this.level = 0,
@@ -100,7 +103,7 @@ class _TaskState extends State<Task> {
                       width: 54,
                       child: ElevatedButton(
                           onLongPress: () {
-                            _showDialog(context, widget.nameTask);
+                            _showDialog(context,widget.id);
                           },
                           onPressed: () {
                             setState(() {
@@ -158,16 +161,13 @@ class _TaskState extends State<Task> {
   }
 }
 
-_showDialog(context, nameTask) {
+_showDialog(context, idTask) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return  AlertDialog(
+      return AlertDialog(
         title: Row(
-          children: const [
-            Text("Deletar"),
-            Icon(Icons.delete)
-          ],
+          children: const [Text("Deletar"), Icon(Icons.delete)],
         ),
         content: const Text("Tem certeza que deseja excluir essa tarefa?"),
         actions: <Widget>[
@@ -182,14 +182,13 @@ _showDialog(context, nameTask) {
             child: Padding(
               padding: const EdgeInsets.all(0.3),
               child: TextButton(
-                child:  const Text("Sim",
-                style: TextStyle(
-                  color: Colors.white,
-                  backgroundColor: Colors.blue
-                  
-                ),),
+                child: const Text(
+                  "Sim",
+                  style: TextStyle(
+                      color: Colors.white, backgroundColor: Colors.blue),
+                ),
                 onPressed: () {
-                  TaskDao().delete(nameTask);
+                  TaskDao().delete(idTask);
                   Navigator.of(context).pop();
                 },
               ),

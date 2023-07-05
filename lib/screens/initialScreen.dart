@@ -133,9 +133,13 @@ class _InitialScreenState extends State<InitialScreen> {
                 taskContext: context,
               ),
             ),
-          ).then((value) => setState(() {
-            print('Recarregando tela inicial');
-          }));
+          ).then((value) {
+            Future.delayed(const Duration(seconds: 2), () {
+              setState(() {
+                print('Recarregando tela inicial');
+              });
+            });
+          });
 
           //Navegação nomeada: passo o contexto para o app conseguir salvar a tarefa
           // Navigator.of(context)

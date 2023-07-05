@@ -7,38 +7,38 @@ class InheritedWidgetTasks extends InheritedWidget {
   double globalLevel = 0;
   String globalLevelString = '0,00';
 
-  List<Task> tasks = [
-    Task(
-      nameTask: 'Aprender Flutter',
-      urlImage: 'assets/images/dash.png',
-      difficulty: 3,
-    ),
-    Task(
-      nameTask: 'Andar de bike',
-      urlImage: 'assets/images/bike.webp',
-      difficulty: 2,
-    ),
-    Task(
-      nameTask: 'Meditar',
-      urlImage: 'assets/images/meditar.jpeg',
-      difficulty: 5,
-    ),
-    Task(
-      nameTask: 'Ler livro',
-      urlImage: 'assets/images/livro.jpg',
-      difficulty: 3,
-    ),
-    Task(
-      nameTask: 'Jogar',
-      urlImage: 'assets/images/jogar.jpg',
-      difficulty: 1,
-    ),
-  ];
+  // List<Task> tasks = [
+  //   Task(
+  //     nameTask: 'Aprender Flutter',
+  //     urlImage: 'assets/images/dash.png',
+  //     difficulty: 3,
+  //   ),
+  //   Task(
+  //     nameTask: 'Andar de bike',
+  //     urlImage: 'assets/images/bike.webp',
+  //     difficulty: 2,
+  //   ),
+  //   Task(
+  //     nameTask: 'Meditar',
+  //     urlImage: 'assets/images/meditar.jpeg',
+  //     difficulty: 5,
+  //   ),
+  //   Task(
+  //     nameTask: 'Ler livro',
+  //     urlImage: 'assets/images/livro.jpg',
+  //     difficulty: 3,
+  //   ),
+  //   Task(
+  //     nameTask: 'Jogar',
+  //     urlImage: 'assets/images/jogar.jpg',
+  //     difficulty: 1,
+  //   ),
+  // ];
 
-  void createTask(String nameTask, String urlImage, int difficulty) {
-    tasks.add(
-        Task(nameTask: nameTask, urlImage: urlImage, difficulty: difficulty));
-  }
+  // void createTask(String nameTask, String urlImage, int difficulty) {
+  //   tasks.add(
+  //       Task(nameTask: nameTask, urlImage: urlImage, difficulty: difficulty));
+  // }
 
   void incrementTotalValue(int difficulty) {
     globalLevel += difficulty / 10;
@@ -58,6 +58,6 @@ class InheritedWidgetTasks extends InheritedWidget {
 
   @override
   bool updateShouldNotify(InheritedWidgetTasks oldWidget) {
-    return tasks != oldWidget.tasks;
+    return false;
   }
 }

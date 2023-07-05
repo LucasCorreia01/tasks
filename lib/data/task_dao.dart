@@ -4,6 +4,7 @@ import 'package:tasks/data/database.dart';
 
 class TaskDao {
   static String tableSql = 'CREATE TABLE $_tableName('
+      '$_id INTEGER,'
       '$_name TEXT,'
       '$_difficulty INTEGER,'
       '$_image TEXT,'
@@ -11,6 +12,7 @@ class TaskDao {
       ')';
 
   static const String _tableName = 'TaskTable';
+  static const String _id = 'id';
   static const String _name = 'name';
   static const String _difficulty = 'difficulty';
   static const String _image = 'image';
@@ -22,14 +24,8 @@ class TaskDao {
     final Database database = await getDatabase();
     var itemExists = await find(tarefa.nameTask);
     Map<String, dynamic> taskMap = toMap(tarefa);
-    if (itemExists.isEmpty) {
-      // print('A tarefa não existia');
-      return await database.insert(_tableName, taskMap);
-    } else {
-      // print('A tarefa já exisite');
-      return await database.update(_tableName, taskMap,
-          where: '$_name = ?', whereArgs: [tarefa.nameTask]);
-    }
+
+    return await database.insert(_tableName, taskMap);
   }
 
   //método que recupera todos as tarefas
@@ -52,11 +48,11 @@ class TaskDao {
     return toList(result);
   }
 
-  delete(String nameOfTask) async {
+  delete(String idTask) async {
     // print('Estamos acessando o método delete');
     final Database database = await getDatabase();
     return await database
-        .delete(_tableName, where: '$_name = ?', whereArgs: [nameOfTask]);
+        .delete(_tableName, where: '$_id = ?', whereArgs: [idTask]);
   }
 
   //Transforma nosso mapa vindo do banco em um lista de tarefas para a nossa aplicação.
@@ -66,6 +62,7 @@ class TaskDao {
     final List<Task> tarefas = [];
     for (Map<String, dynamic> linha in mapOfTasks) {
       final Task tarefa = Task(
+        id: linha[_id],
         nameTask: linha[_name],
         urlImage: linha[_image],
         difficulty: linha[_difficulty],
@@ -81,6 +78,7 @@ class TaskDao {
   Map<String, dynamic> toMap(Task tarefa) {
     // print('Convertendo tarefa em Map: ');
     final Map<String, dynamic> mapOfTasks = {};
+    mapOfTasks[_id] = tarefa.id;
     mapOfTasks[_name] = tarefa.nameTask;
     mapOfTasks[_difficulty] = tarefa.difficulty;
     mapOfTasks[_image] = tarefa.urlImage;
